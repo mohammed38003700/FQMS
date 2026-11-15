@@ -1,3 +1,4 @@
+import 'screens/reports_screen.dart';
 import 'screens/deviations_screen.dart';
 import 'screens/records_screen.dart';
 import 'screens/production_screen.dart';
@@ -36,8 +37,8 @@ class Dashboard extends StatelessWidget {
     final modules = [
       {
         'name': 'متابعة الإنتاج',
-  'icon': Icons.precision_manufacturing,
-  'screen': const ProductionScreen(),
+        'icon': Icons.precision_manufacturing,
+        'screen': const ProductionScreen(),
       },
       {
         'name': 'المختبر',
@@ -50,9 +51,9 @@ class Dashboard extends StatelessWidget {
         'screen': const CipScreen(),
       },
       {
-  'name': 'سجل عدم المطابقة',
-  'icon': Icons.report_problem,
-  'screen': const DeviationsScreen(),   
+         'name': 'سجل عدم المطابقة',
+         'icon': Icons.report_problem,
+         'screen': const DeviationsScreen(),   
       },
       {
         'name': 'عدم المطابقة و CAPA',
@@ -70,14 +71,14 @@ class Dashboard extends StatelessWidget {
         'screen': null,
       },
       {
-        'name': 'التقارير',
-        'icon': Icons.bar_chart,
-        'screen': null,
+         'name': 'التقارير',
+         'icon': Icons.bar_chart,
+         'screen': const ReportsScreen(),
       },
       {
-  'name': 'سجل العمليات',
-  'icon': Icons.history,
-  'screen': const RecordsScreen(),
+          'name': 'سجل العمليات',
+          'icon': Icons.history,
+          'screen': const RecordsScreen(),
       },
       {
         'name': 'الإعدادات',
