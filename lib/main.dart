@@ -1,9 +1,10 @@
+
+import 'package:flutter/material.dart';
+
 import 'screens/reports_screen.dart';
 import 'screens/deviations_screen.dart';
 import 'screens/records_screen.dart';
 import 'screens/production_screen.dart';
-import 'package:flutter/material.dart';
-
 import 'screens/lab_screen.dart';
 import 'screens/cip_screen.dart';
 import 'screens/capa_screen.dart';
@@ -34,31 +35,31 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final modules = [
+    final List<Map<String, dynamic>> modules = [
       {
         'name': 'متابعة الإنتاج',
         'icon': Icons.precision_manufacturing,
-        'screen': const ProductionScreen(),
+        'screen': ProductionScreen(),
       },
       {
         'name': 'المختبر',
         'icon': Icons.science,
-        'screen': const LabScreen(),
+        'screen': LabScreen(),
       },
       {
         'name': 'نظام CIP',
         'icon': Icons.water_drop,
-        'screen': const CipScreen(),
+        'screen': CipScreen(),
       },
       {
-         'name': 'سجل عدم المطابقة',
-         'icon': Icons.report_problem,
-         'screen': const DeviationsScreen(),   
+        'name': 'سجل عدم المطابقة',
+        'icon': Icons.report_problem,
+        'screen': DeviationsScreen(),
       },
       {
         'name': 'عدم المطابقة و CAPA',
         'icon': Icons.warning,
-        'screen':  CapaScreen(),
+        'screen': CapaScreen(),
       },
       {
         'name': 'التدقيق',
@@ -71,14 +72,14 @@ class Dashboard extends StatelessWidget {
         'screen': null,
       },
       {
-         'name': 'التقارير',
-         'icon': Icons.bar_chart,
-         'screen':  ReportsScreen(),
+        'name': 'التقارير',
+        'icon': Icons.bar_chart,
+        'screen': ReportsScreen(),
       },
       {
-          'name': 'سجل العمليات',
-          'icon': Icons.history,
-          'screen':  RecordsScreen(),
+        'name': 'سجل العمليات',
+        'icon': Icons.history,
+        'screen': RecordsScreen(),
       },
       {
         'name': 'الإعدادات',
@@ -147,13 +148,14 @@ class Dashboard extends StatelessWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: () {
-                          final screen = item['screen'];
+                          final Widget? screen =
+                              item['screen'] as Widget?;
 
-                          if (screen is Widget) {
+                          if (screen != null) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (_) => screen,
+                              MaterialPageRoute<void>(
+                                builder: (context) => screen,
                               ),
                             );
                           } else {
@@ -176,8 +178,9 @@ class Dashboard extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 5,
+                              ),
                               child: Text(
                                 item['name'] as String,
                                 textAlign: TextAlign.center,
