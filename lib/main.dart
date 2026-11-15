@@ -1,4 +1,4 @@
-
+import 'screens/production_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/lab_screen.dart';
@@ -34,8 +34,8 @@ class Dashboard extends StatelessWidget {
     final modules = [
       {
         'name': 'متابعة الإنتاج',
-        'icon': Icons.precision_manufacturing,
-        'screen': null,
+  'icon': Icons.precision_manufacturing,
+  'screen': const ProductionScreen(),
       },
       {
         'name': 'المختبر',
