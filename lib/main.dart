@@ -1,3 +1,4 @@
+import 'screens/records_screen.dart';
 import 'screens/production_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +67,11 @@ class Dashboard extends StatelessWidget {
         'name': 'التقارير',
         'icon': Icons.bar_chart,
         'screen': null,
+      },
+      {
+  'name': 'سجل العمليات',
+  'icon': Icons.history,
+  'screen': const RecordsScreen(),
       },
       {
         'name': 'الإعدادات',
