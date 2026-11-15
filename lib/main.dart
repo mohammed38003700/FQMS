@@ -1,3 +1,4 @@
+import 'screens/deviations_screen.dart';
 import 'screens/records_screen.dart';
 import 'screens/production_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,11 @@ class Dashboard extends StatelessWidget {
         'name': 'نظام CIP',
         'icon': Icons.water_drop,
         'screen': const CipScreen(),
+      },
+      {
+  'name': 'سجل عدم المطابقة',
+  'icon': Icons.report_problem,
+  'screen': const DeviationsScreen(),   
       },
       {
         'name': 'عدم المطابقة و CAPA',
