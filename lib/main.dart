@@ -1,6 +1,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'screens/lab_screen.dart';
+import 'screens/cip_screen.dart';
+import 'screens/capa_screen.dart';
+
 void main() {
   runApp(const FQMSApp());
 }
@@ -25,19 +29,51 @@ class FQMSApp extends StatelessWidget {
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
 
-  final List<Map<String, dynamic>> modules = const [
-    {'name': 'متابعة الإنتاج', 'icon': Icons.factory},
-    {'name': 'المختبر', 'icon': Icons.science},
-    {'name': 'نظام CIP', 'icon': Icons.water_drop},
-    {'name': 'عدم المطابقة', 'icon': Icons.warning},
-    {'name': 'التدقيق', 'icon': Icons.fact_check},
-    {'name': 'التحميل والتخزين', 'icon': Icons.local_shipping},
-    {'name': 'التقارير', 'icon': Icons.bar_chart},
-    {'name': 'الإعدادات', 'icon': Icons.settings},
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final modules = [
+      {
+        'name': 'متابعة الإنتاج',
+        'icon': Icons.precision_manufacturing,
+        'screen': null,
+      },
+      {
+        'name': 'المختبر',
+        'icon': Icons.science,
+        'screen': const LabScreen(),
+      },
+      {
+        'name': 'نظام CIP',
+        'icon': Icons.water_drop,
+        'screen': const CipScreen(),
+      },
+      {
+        'name': 'عدم المطابقة و CAPA',
+        'icon': Icons.warning,
+        'screen': const CapaScreen(),
+      },
+      {
+        'name': 'التدقيق',
+        'icon': Icons.fact_check,
+        'screen': null,
+      },
+      {
+        'name': 'التحميل والتخزين',
+        'icon': Icons.local_shipping,
+        'screen': null,
+      },
+      {
+        'name': 'التقارير',
+        'icon': Icons.bar_chart,
+        'screen': null,
+      },
+      {
+        'name': 'الإعدادات',
+        'icon': Icons.settings,
+        'screen': null,
+      },
+    ];
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -89,20 +125,33 @@ class Dashboard extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 1.25,
+                    childAspectRatio: 1.15,
                   ),
                   itemBuilder: (context, index) {
                     final item = modules[index];
+
                     return Card(
                       child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
                         onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'قسم ${item['name']} قيد التطوير',
+                          final screen = item['screen'];
+
+                          if (screen is Widget) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => screen,
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'قسم ${item['name']} قيد التطوير',
+                                ),
+                              ),
+                            );
+                          }
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -113,10 +162,15 @@ class Dashboard extends StatelessWidget {
                               color: Colors.blue.shade800,
                             ),
                             const SizedBox(height: 10),
-                            Text(
-                              item['name'] as String,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                item['name'] as String,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
