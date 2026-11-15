@@ -58,7 +58,7 @@ class Dashboard extends StatelessWidget {
       {
         'name': 'عدم المطابقة و CAPA',
         'icon': Icons.warning,
-        'screen': const CapaScreen(),
+        'screen':  CapaScreen(),
       },
       {
         'name': 'التدقيق',
@@ -73,12 +73,12 @@ class Dashboard extends StatelessWidget {
       {
          'name': 'التقارير',
          'icon': Icons.bar_chart,
-         'screen': const ReportsScreen(),
+         'screen':  ReportsScreen(),
       },
       {
           'name': 'سجل العمليات',
           'icon': Icons.history,
-          'screen': const RecordsScreen(),
+          'screen':  RecordsScreen(),
       },
       {
         'name': 'الإعدادات',
