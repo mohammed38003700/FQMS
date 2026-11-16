@@ -29,12 +29,7 @@ jobs:
 
       - name: Generate Android project files
         run: flutter create --platforms=android --project-name fqms .
-            - name: Generate Android project files
-        run: flutter create --platforms=android --project-name fqms .
 
-      - name: Install dependencies
-        run: flutter pub get
-        
       - name: Install dependencies
         run: flutter pub get
 
