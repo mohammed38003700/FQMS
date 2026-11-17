@@ -17,9 +17,9 @@ jobs:
 
       - name: Extract fixed FQMS project
         run: |
-          test -f FQMS-main-fixed.zip
+          test -f FQMS-main.zip
           mkdir -p /tmp/fqms-fixed
-          unzip -q FQMS-main-fixed.zip -d /tmp/fqms-fixed
+          unzip -q FQMS-main.zip -d /tmp/fqms-fixed
           rsync -a /tmp/fqms-fixed/FQMS-main/ ./
 
       - name: Setup Java
