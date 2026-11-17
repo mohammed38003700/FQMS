@@ -36,8 +36,7 @@ jobs:
           rm -rf lib
           cp -a /tmp/fqms-fixed/FQMS-main/lib ./lib
           cp /tmp/fqms-fixed/FQMS-main/pubspec.yaml ./pubspec.yaml
-          cp /tmp/fqms-fixed/FQMS-main/analysis_options.yaml ./analysis_options.yaml
-
+          
       - name: Generate Android project files
         run: flutter create --platforms=android --project-name fqms .
 
