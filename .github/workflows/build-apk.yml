@@ -15,22 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      
-      - name: Extract fixed FQMS project
-        run: |
-          test -f FQMS-main.zip
-          mkdir -p /tmp/fqms-fixed
-          unzip -q FQMS-main.zip -d /tmp/fqms-fixed
-          test -f /tmp/fqms-fixed/FQMS-main/pubspec.yaml
-          rm -rf lib
-          rsync -a /tmp/fqms-fixed/FQMS-main/ ./
-
-        run: |
-          test -f FQMS-main.zip
-          mkdir -p /tmp/fqms-fixed
-          unzip -q FQMS-main.zip -d /tmp/fqms-fixed
-          rsync -a /tmp/fqms-fixed/FQMS-main/ ./
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -42,6 +26,17 @@ jobs:
         with:
           channel: stable
           cache: true
+
+      - name: Extract fixed FQMS project
+        run: |
+          test -f FQMS-main.zip
+          mkdir -p /tmp/fqms-fixed
+          unzip -q FQMS-main.zip -d /tmp/fqms-fixed
+          test -f /tmp/fqms-fixed/FQMS-main/pubspec.yaml
+          rm -rf lib
+          cp -a /tmp/fqms-fixed/FQMS-main/lib ./lib
+          cp /tmp/fqms-fixed/FQMS-main/pubspec.yaml ./pubspec.yaml
+          cp /tmp/fqms-fixed/FQMS-main/analysis_options.yaml ./analysis_options.yaml
 
       - name: Generate Android project files
         run: flutter create --platforms=android --project-name fqms .
