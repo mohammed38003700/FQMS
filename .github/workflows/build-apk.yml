@@ -15,7 +15,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      
       - name: Extract fixed FQMS project
+        run: |
+          test -f FQMS-main.zip
+          mkdir -p /tmp/fqms-fixed
+          unzip -q FQMS-main.zip -d /tmp/fqms-fixed
+          test -f /tmp/fqms-fixed/FQMS-main/pubspec.yaml
+          rm -rf lib
+          rsync -a /tmp/fqms-fixed/FQMS-main/ ./
+
         run: |
           test -f FQMS-main.zip
           mkdir -p /tmp/fqms-fixed
