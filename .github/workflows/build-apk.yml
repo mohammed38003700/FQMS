@@ -15,6 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Extract fixed FQMS project
+        run: |
+          test -f FQMS-main-fixed.zip
+          mkdir -p /tmp/fqms-fixed
+          unzip -q FQMS-main-fixed.zip -d /tmp/fqms-fixed
+          rsync -a /tmp/fqms-fixed/FQMS-main/ ./
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -33,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Analyze project
+        run: flutter analyze
+
       - name: Build APK
         run: flutter build apk --release
 
@@ -41,3 +51,4 @@ jobs:
         with:
           name: FQMS-Android-APK
           path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
